@@ -1,0 +1,792 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Birthday 💖</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --pink:#ff77b7;
+      --pink2:#ffd1e7;
+      --sky:#7bd3ff;
+      --sun:#ffd86b;
+      --ink:#2b2b2b;
+      --card: rgba(255,255,255,.78);
+      --shadow: 0 18px 45px rgba(0,0,0,.12);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:"Quicksand", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--ink);
+      overflow-x:hidden;
+      background:
+        radial-gradient(1200px 700px at 15% 20%, rgba(255, 119, 183,.35), transparent 55%),
+        radial-gradient(900px 600px at 85% 15%, rgba(123, 211, 255,.35), transparent 55%),
+        radial-gradient(900px 700px at 70% 85%, rgba(255, 216, 107,.35), transparent 55%),
+        linear-gradient(135deg, #ffe1f1, #e7f6ff);
+    }
+
+    .sparkle {
+      position: fixed;
+      inset: -20vh -20vw;
+      pointer-events:none;
+      background-image:
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,.7) 0 2px, transparent 3px),
+        radial-gradient(circle at 70% 40%, rgba(255,255,255,.6) 0 1.5px, transparent 3px),
+        radial-gradient(circle at 40% 80%, rgba(255,255,255,.55) 0 1.8px, transparent 3px),
+        radial-gradient(circle at 85% 75%, rgba(255,255,255,.55) 0 1.4px, transparent 3px);
+      background-size: 320px 320px;
+      animation: drift 18s linear infinite;
+      opacity:.6;
+      filter: blur(.2px);
+    }
+    @keyframes drift{
+      from{transform: translate3d(0,0,0)}
+      to{transform: translate3d(-220px, -180px, 0)}
+    }
+
+    .wrap{
+      min-height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 26px 16px 40px;
+      position:relative;
+    }
+
+    .frame{
+      width:min(980px, 100%);
+      border-radius: 26px;
+      background: linear-gradient(180deg, rgba(255,255,255,.6), rgba(255,255,255,.35));
+      border: 1px solid rgba(255,255,255,.55);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      overflow:hidden;
+      position:relative;
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 16px 18px;
+      background: linear-gradient(90deg, rgba(255,119,183,.18), rgba(123,211,255,.18), rgba(255,216,107,.18));
+      border-bottom:1px solid rgba(255,255,255,.6);
+    }
+    .brand{
+      display:flex; gap:10px; align-items:center;
+      font-weight:800;
+    }
+    .dot{
+      width:12px;height:12px;border-radius:50%;
+      background: var(--pink);
+      box-shadow: 0 0 0 6px rgba(255,119,183,.15);
+    }
+    .mini{
+      font-size: 12px;
+      opacity:.85;
+      display:flex; gap:10px; align-items:center;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .pill{
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.55);
+      border:1px solid rgba(255,255,255,.65);
+      white-space:nowrap;
+    }
+
+    .content{ padding: 22px; }
+    .screen{display:none}
+    .screen.active{display:block}
+
+    .hero{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:18px;
+      align-items:center;
+    }
+    .hero.oneCol{ grid-template-columns: 1fr; }
+
+    @media (max-width: 860px){ .hero{grid-template-columns:1fr} }
+
+    h1.title{
+      font-family: "Pacifico", cursive;
+      font-size: clamp(34px, 4.6vw, 54px);
+      margin: 0 0 10px;
+      color:#ff3f9f;
+      text-shadow: 0 12px 30px rgba(255,63,159,.18);
+      line-height:1.12;
+    }
+
+    .lead{
+      font-size: 16.5px;
+      line-height: 1.8;
+      margin:0 0 18px;
+      background: rgba(255,255,255,.55);
+      border: 1px solid rgba(255,255,255,.6);
+      padding: 14px 14px;
+      border-radius: 18px;
+    }
+
+    .card{
+      border-radius: 22px;
+      background: rgba(255,255,255,.78);
+      border: 1px solid rgba(255,255,255,.65);
+      box-shadow: 0 16px 30px rgba(0,0,0,.08);
+      overflow:hidden;
+      position:relative;
+    }
+    .card .pad{padding:16px}
+
+    .btnRow{display:flex; gap:10px; flex-wrap:wrap}
+    button{
+      border:0;
+      border-radius: 14px;
+      padding: 12px 14px;
+      font-family: inherit;
+      font-weight: 800;
+      cursor:pointer;
+      transition: transform .12s ease, filter .12s ease, box-shadow .12s ease;
+      box-shadow: 0 14px 30px rgba(0,0,0,.12);
+    }
+    button:active{transform: translateY(1px) scale(.99)}
+    .btnPrimary{
+      background: linear-gradient(135deg, var(--pink), #ff4ea6);
+      color:white;
+    }
+    .btnSoft{
+      background: linear-gradient(135deg, rgba(123,211,255,.65), rgba(255,216,107,.55));
+      color:#1d1d1d;
+      box-shadow: 0 14px 30px rgba(0,0,0,.10);
+    }
+    .btnGhost{
+      background: rgba(255,255,255,.6);
+      border:1px solid rgba(255,255,255,.75);
+      box-shadow:none;
+      color:#333;
+    }
+
+    /* Video stage */
+    .stage{
+      display:grid;
+      grid-template-columns: 1fr .9fr;
+      gap: 14px;
+      align-items:stretch;
+    }
+    @media (max-width: 860px){ .stage{grid-template-columns:1fr} }
+
+    .videoWrap{
+      position:relative;
+      border-radius: 24px;
+      overflow:hidden;
+      background:
+        radial-gradient(1200px 700px at 20% 20%, rgba(255,119,183,.20), transparent 55%),
+        radial-gradient(900px 600px at 80% 15%, rgba(123,211,255,.20), transparent 55%),
+        radial-gradient(900px 700px at 70% 85%, rgba(255,216,107,.20), transparent 55%),
+        linear-gradient(135deg, rgba(255,255,255,.55), rgba(255,255,255,.25));
+      border: 1px solid rgba(255,255,255,.7);
+      height: min(520px, 64vh);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    video{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+      background: rgba(0,0,0,.12);
+    }
+
+    .videoOverlay{
+      position:absolute;
+      inset:auto 0 0 0;
+      padding: 14px;
+      background: linear-gradient(180deg, transparent, rgba(0,0,0,.45));
+      color: white;
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:10px;
+      min-height: 110px;
+      pointer-events:none;
+    }
+
+    .badge{
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.25);
+      border: 1px solid rgba(255,255,255,.35);
+      backdrop-filter: blur(8px);
+      font-weight:800;
+      font-size: 12px;
+      letter-spacing:.2px;
+      white-space:nowrap;
+    }
+
+    .status{
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.58);
+      border:1px solid rgba(255,255,255,.72);
+      font-size: 13px;
+      opacity:.95;
+    }
+    .tinyNote{
+      font-size: 12px;
+      opacity: .85;
+      margin-top: 10px;
+      line-height: 1.6;
+    }
+
+    /* Message typing */
+    .messageBox{
+      padding: 14px 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.62);
+      border:1px solid rgba(255,255,255,.7);
+      line-height: 1.9;
+      font-size: 16px;
+      min-height: 220px;
+      white-space: pre-wrap;
+    }
+    .cursor{
+      display:inline-block;
+      width: 10px;
+      height: 18px;
+      background: rgba(255,63,159,.65);
+      margin-left: 3px;
+      border-radius: 3px;
+      animation: blink .9s infinite;
+      vertical-align: -3px;
+    }
+    @keyframes blink { 0%,49%{opacity:1} 50%,100%{opacity:.2} }
+
+    /* Wishes */
+    .wishTitle{
+      text-align:center;
+      font-family:"Pacifico", cursive;
+      font-size: clamp(30px, 4vw, 50px);
+      color:#ff3f9f;
+      margin: 8px 0 10px;
+    }
+    .wishSub{
+      text-align:center;
+      margin:0 auto 14px;
+      max-width: 680px;
+      opacity:.9;
+      line-height:1.75;
+      background: rgba(255,255,255,.55);
+      border:1px solid rgba(255,255,255,.65);
+      padding: 12px 14px;
+      border-radius: 16px;
+    }
+
+    .letters{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+    @media (max-width: 860px){ .letters{grid-template-columns:1fr} }
+
+    .letter{
+      border-radius: 22px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.7);
+      background: rgba(255,255,255,.68);
+      box-shadow: 0 16px 30px rgba(0,0,0,.08);
+      position:relative;
+    }
+    .letterHeader{
+      padding: 14px 14px 10px;
+      background: linear-gradient(90deg, rgba(255,119,183,.22), rgba(123,211,255,.18), rgba(255,216,107,.18));
+      border-bottom: 1px solid rgba(255,255,255,.75);
+      font-weight: 900;
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    textarea{
+      width:100%;
+      border:0;
+      outline:none;
+      resize:none;
+      padding: 12px 14px;
+      font-family: inherit;
+      font-size: 15.5px;
+      line-height: 1.7;
+      background: transparent;
+      min-height: 160px;
+    }
+
+    /* Confetti canvas */
+    canvas#confetti{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index: 50;
+      display:none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="sparkle"></div>
+  <canvas id="confetti"></canvas>
+
+  <div class="wrap">
+    <div class="frame">
+      <div class="topbar">
+        <div class="brand">
+          <div class="dot"></div>
+          <div>Birthday Surprise</div>
+        </div>
+        <div class="mini">
+          <div class="pill">Nguyễn</div>
+          <div class="pill">Tuấn</div>
+          <div class="pill">Anh đẹp trai nhất</div>
+        </div>
+      </div>
+
+      <div class="content">
+        <!-- Screen 1 -->
+        <section class="screen active" id="s1">
+          <div class="hero oneCol">
+            <div>
+              <h1 class="title" id="greetTitle">Chào em yêu 💖</h1>
+              <p class="lead" id="greetText">
+                Hôm nay là ngày đặc biệt của em. Anh chuẩn bị một món quà nhỏ —
+                một góc riêng chỉ dành cho tụi mình.
+                <br><br>
+                Nhấn “Bắt đầu” nhé 😚
+              </p>
+              <div class="btnRow">
+                <button class="btnPrimary" id="btnStart">Bắt đầu ✨</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Screen 2 -->
+        <section class="screen" id="s2">
+          <div class="hero oneCol">
+            <div>
+              <h1 class="title">Em đã sẵn sàng chưa? 🥺</h1>
+              <p class="lead">
+                Anh mong em sẽ thích món quà này<br>
+                iu em 💞
+              </p>
+              <div class="btnRow">
+                <button class="btnPrimary" id="btnReady">Sẵn sàng rồi 💞</button>
+                <button class="btnSoft" id="btnBack1">Quay lại</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Screen 3 (VIDEO) -->
+        <section class="screen" id="s3">
+          <div class="stage">
+            <div class="videoWrap card">
+              <video id="memoryVideo" playsinline controls preload="auto"></video>
+
+              <div class="videoOverlay">
+                <div>
+                  <div style="font-family:Pacifico,cursive; font-size:20px; margin-bottom:4px;">Tụi mình 💗</div>
+                  <div style="opacity:.9; font-size:13px" id="videoHint">Nếu video chưa chạy, hãy bấm nút Play ▶️</div>
+                </div>
+                <div class="badge" id="videoBadge">VIDEO</div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="pad">
+                <div style="font-weight:900; font-size:16px; margin-bottom:10px;">Đang phát…</div>
+                <div class="status" id="playStatus">Chuẩn bị bắt đầu</div>
+                <div class="tinyNote" id="videoNote">
+                  Nếu video bị dừng sau vài giây: hãy export MP4 chuẩn <b>H.264 + AAC</b> (để Chrome chạy ổn).
+                </div>
+                <div class="btnRow" style="margin-top:12px">
+                  <button class="btnGhost" id="btnSkip">Bỏ qua (vẫn yêu) ➜</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Screen 4 (Message) -->
+        <section class="screen" id="s4">
+          <div class="hero">
+            <div>
+              <h1 class="title">Gửi em 💌</h1>
+              <div class="messageBox" id="messageBox"></div>
+              <div style="margin-top:14px" class="btnRow">
+                <button class="btnPrimary" id="btnToWishes" disabled>Tiếp tục ➜</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="pad">
+                <div style="font-weight:900; margin-bottom:10px;">Nhắn nhỏ</div>
+                <div style="line-height:1.7; opacity:.9">
+                  Anh viết đoạn này để em thấy: em không phải tự gồng một mình.
+                  Mọi thứ sẽ ổn dần, và anh ở đây.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Screen 5 (Wishes) -->
+        <section class="screen" id="s5">
+          <h2 class="wishTitle">Điều ước của em ✨</h2>
+          <p class="wishSub">
+            Hôm nay cho phép em “ích kỷ” một chút: hãy viết ra 2 điều ước.
+            Anh sẽ đọc và cố gắng thực hiện cho em — nghiêm túc đó 💛
+          </p>
+
+          <div class="letters">
+            <div class="letter">
+              <div class="letterHeader">
+                <span>✉️ Bức thư #1</span>
+                <span style="opacity:.8; font-size:12px">Một điều ước</span>
+              </div>
+              <textarea id="wish1" placeholder="Ví dụ: Em muốn…"></textarea>
+            </div>
+
+            <div class="letter">
+              <div class="letterHeader">
+                <span>✉️ Bức thư #2</span>
+                <span style="opacity:.8; font-size:12px">Một điều ước nữa</span>
+              </div>
+              <textarea id="wish2" placeholder="Ví dụ: Em mong…"></textarea>
+            </div>
+          </div>
+
+          <div style="margin-top:14px" class="btnRow">
+            <button class="btnPrimary" id="btnSend">Gửi điều ước 💌</button>
+            <button class="btnSoft" id="btnSaveLocal">Lưu trên máy (backup) 💾</button>
+          </div>
+
+          <div class="status" id="sendStatus" style="margin-top:12px;">
+            Trạng thái: Chưa gửi.
+          </div>
+
+          <div class="tinyNote">
+            Ước cho chi tiết zô , khum là nhịn 😤
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /***************
+     * TÙY CHỈNH NHANH
+     ***************/
+    const YOUR_NAME = "Anh";     // đổi thành tên bạn (ví dụ: "Hiếu")
+    const HER_NICK  = "Em";      // đổi thành tên/nickname của cô ấy
+    const VIDEO_SRC = "assets/vv.mp4"; // video của bạn
+    const GOOGLE_SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycby2DEkYBiJ_CSV6xJWDdHP80ADSkO_-imWetkPvz501QWB9zZitFUpYDIJqGoArLGSozg/exec";
+
+    const BIRTHDAY_MESSAGE =
+`${HER_NICK} à,
+Thư Đặng của anhhhhhhhh
+Chúc mừng sinh nhật em yêuuuuuuuuuuuuuuu 💖
+
+Anh không muốn chúc em kiểu “chúc vui vẻ” cho xong, vì anh biết dạo này trong em không chỉ có niềm vui.
+Có những ngày em phải gồng, phải cố tỏ ra ổn, phải mỉm cười dù bên trong rối như tơ. Có những lúc em mệt đến mức chỉ muốn biến mất khỏi mọi thứ một chút, hoặc chỉ muốn ai đó nói: “Không sao, em không cần cố nữa.”
+
+Anh muốn nói với em điều này, thật rõ ràng và thật chậm:
+
+Em không hề yếu đuối.
+Em đang kiệt sức vì em đã phải đi qua quá nhiều thứ cùng một lúc — mà vẫn không bỏ cuộc.
+Người yếu là người buông xuôi, còn em… em vẫn thức dậy, vẫn đi làm, vẫn sống, vẫn cố làm tròn vai trong khi trái tim thì chật ních. Đó không phải “bình thường”. Đó là dũng cảm.
+
+Anh cũng muốn em hiểu một điều quan trọng:
+Không ai mạnh mẽ bằng cách “không đau”.
+Mạnh mẽ là dám nhìn thẳng vào nỗi đau, dám thừa nhận “em đang mệt”, dám yếu mềm mà vẫn tiếp tục sống tử tế. Em làm được điều đó mỗi ngày, dù em không nhận ra.
+
+Nếu có điều gì khiến em cảm thấy tệ… anh không muốn em tự trách mình.
+Stress, buồn bã, mất động lực, hay những lúc thấy đời vô nghĩa — nó không nói rằng em kém cỏi. Nó chỉ nói rằng em đã phải chịu đựng quá lâu mà chưa được nghỉ đúng cách, chưa được ôm và thả lỏng đúng nghĩa.
+
+Nên hôm nay, sinh nhật của em, anh muốn “cho phép” em một điều:
+Em không cần phải mạnh mẽ suốt.
+Em có thể mệt. Em có thể khóc. Em có thể không làm được gì cả.
+Em có thể chỉ thở và tồn tại. Như vậy thôi cũng đã đủ.
+
+Anh ở đây — không phải kiểu “ở đây cho có.”
+Anh ở đây để đỡ em, để nghe em, để hiểu em và luôn chờ em về để được chở che cho em
+
+Anh chỉ mong được ngồi cạnh em trong im lặng, nắm tay em, để em dựa vào anh, để em được “nghỉ” một chút trong vòng tay anh.
+Anh không cần em phải giải thích hợp lý. Anh chỉ cần em được an toàn và khỏe mạnh.
+
+Thương em nhiều — không phải kiểu thương một lúc, mà là thương mỗi ngày.
+Và anh chọn em, mỗi ngày. 💖`;
+
+    /***************
+     * UI HELPERS
+     ***************/
+    const $ = (id) => document.getElementById(id);
+    const screens = ["s1","s2","s3","s4","s5"].map($);
+    function go(screenId){
+      screens.forEach(s => s.classList.toggle("active", s.id === screenId));
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+
+    $("greetTitle").textContent = `Chào ${HER_NICK} yêu 💖`;
+    $("greetText").innerHTML =
+      `Hôm nay là ngày đặc biệt của ${HER_NICK}. ${YOUR_NAME} chuẩn bị một món quà nhỏ — một góc riêng chỉ dành cho tụi mình.
+      <br><br>Nhấn “Bắt đầu” nhé 😚`;
+
+    /***************
+     * CONFETTI
+     ***************/
+    const confettiCanvas = $("confetti");
+    const ctx = confettiCanvas.getContext("2d");
+    let confettiOn = false;
+    let confettiPieces = [];
+
+    function resizeConfetti(){
+      confettiCanvas.width = window.innerWidth * devicePixelRatio;
+      confettiCanvas.height = window.innerHeight * devicePixelRatio;
+      ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+    }
+    window.addEventListener("resize", resizeConfetti);
+    resizeConfetti();
+
+    function startConfetti(){
+      confettiOn = true;
+      confettiCanvas.style.display = "block";
+      confettiPieces = Array.from({length: 140}, () => ({
+        x: Math.random() * window.innerWidth,
+        y: -20 - Math.random() * 200,
+        r: 4 + Math.random() * 6,
+        vx: -1.2 + Math.random() * 2.4,
+        vy: 2.2 + Math.random() * 3.8,
+        a: Math.random() * Math.PI * 2,
+        va: -0.08 + Math.random() * 0.16
+      }));
+      requestAnimationFrame(tickConfetti);
+      setTimeout(stopConfetti, 2600);
+    }
+    function stopConfetti(){
+      confettiOn = false;
+      setTimeout(()=>{ confettiCanvas.style.display = "none"; }, 600);
+    }
+    function tickConfetti(){
+      if(!confettiOn) return;
+      ctx.clearRect(0,0,window.innerWidth, window.innerHeight);
+      confettiPieces.forEach(p=>{
+        p.x += p.vx;
+        p.y += p.vy;
+        p.a += p.va;
+        if(p.y > window.innerHeight + 30){ p.y = -20; p.x = Math.random()*window.innerWidth; }
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.a);
+        const g = ctx.createLinearGradient(-p.r,0,p.r,0);
+        g.addColorStop(0, "rgba(255,119,183,.9)");
+        g.addColorStop(.5, "rgba(123,211,255,.85)");
+        g.addColorStop(1, "rgba(255,216,107,.9)");
+        ctx.fillStyle = g;
+        ctx.fillRect(-p.r, -p.r, p.r*2, p.r*2);
+        ctx.restore();
+      });
+      requestAnimationFrame(tickConfetti);
+    }
+
+    /***************
+     * VIDEO
+     ***************/
+    const video = $("memoryVideo");
+    let typed = false;
+
+    function resetVideo(){
+      try{
+        video.pause();
+        video.currentTime = 0;
+      }catch(e){}
+    }
+
+    function loadVideo(){
+      // dùng src trực tiếp cho gọn + ổn định
+      video.src = VIDEO_SRC;
+      video.load();
+    }
+
+    async function tryPlayVideo(){
+      $("playStatus").textContent = "Đang phát video…";
+      try{
+        await video.play();
+        $("videoHint").textContent = "Đang phát…";
+      }catch(e){
+        $("playStatus").textContent = "Chưa tự phát được. Em bấm Play ▶️ nha 💗";
+        $("videoHint").textContent = "Bấm Play ▶️ nhé";
+      }
+    }
+
+    function goMessage(){
+      resetVideo();
+      startConfetti();
+      go("s4");
+      typeMessage();
+    }
+
+    $("btnSkip").addEventListener("click", goMessage);
+
+    video.addEventListener("ended", ()=>{
+      $("playStatus").textContent = "Kết thúc 💗";
+      setTimeout(goMessage, 450);
+    });
+
+    video.addEventListener("play", ()=>{
+      $("playStatus").textContent = "Đang phát video…";
+      $("videoHint").textContent = "Đang phát…";
+    });
+
+    video.addEventListener("pause", ()=>{
+      if ($("s3").classList.contains("active") && !video.ended) {
+        $("playStatus").textContent = "Đang tạm dừng. Bấm Play ▶️ để tiếp tục.";
+        $("videoHint").textContent = "Bấm Play ▶️ để tiếp tục";
+      }
+    });
+
+    video.addEventListener("stalled", ()=>{
+      if ($("s3").classList.contains("active")) {
+        $("playStatus").textContent = "Video bị khựng… Nếu hay dừng, hãy export MP4 H.264 + AAC.";
+      }
+    });
+
+    video.addEventListener("error", ()=>{
+      $("playStatus").textContent = "Không phát được video (codec không hợp). Hãy export MP4 H.264 + AAC nhé.";
+    });
+
+    /***************
+     * TYPEWRITER MESSAGE
+     ***************/
+    function typeMessage(){
+      if(typed) return;
+      typed = true;
+
+      const box = $("messageBox");
+      box.textContent = "";
+      $("btnToWishes").disabled = true;
+
+      const full = BIRTHDAY_MESSAGE;
+      let i = 0;
+
+      const cursor = document.createElement("span");
+      cursor.className = "cursor";
+
+      const tick = ()=>{
+        if(i <= full.length){
+          box.textContent = full.slice(0, i);
+          box.appendChild(cursor);
+          i += 1;
+          const speed = (i < 30) ? 18 : (i < 240 ? 16 : 14);
+          setTimeout(tick, speed);
+        }else{
+          cursor.remove();
+          $("btnToWishes").disabled = false;
+        }
+      };
+      tick();
+    }
+
+    /***************
+     * WISH SENDING
+     ***************/
+    function getWishes(){
+      return {
+        wish1: $("wish1").value.trim(),
+        wish2: $("wish2").value.trim(),
+        createdAt: new Date().toISOString(),
+      };
+    }
+
+    function saveLocal(){
+      const data = getWishes();
+      localStorage.setItem("birthday_wishes", JSON.stringify(data));
+      $("sendStatus").textContent = "Trạng thái: Đã lưu backup trên máy 💾";
+    }
+
+    async function sendToSheet(){
+      const data = getWishes();
+
+      if(!data.wish1 && !data.wish2){
+        $("sendStatus").textContent = "Trạng thái: Em chưa viết điều ước nào hết 😚";
+        return;
+      }
+
+      saveLocal();
+
+      if(!GOOGLE_SHEET_ENDPOINT){
+        $("sendStatus").textContent = "Trạng thái: Chưa có link Google Sheet — đã backup trên máy 💾";
+        return;
+      }
+
+      try{
+        $("sendStatus").textContent = "Trạng thái: Đang gửi… ⏳";
+
+        // Gửi dạng FORM để tránh lỗi CORS/preflight
+        const form = new URLSearchParams();
+        form.append("wish1", data.wish1);
+        form.append("wish2", data.wish2);
+        form.append("createdAt", data.createdAt);
+
+        await fetch(GOOGLE_SHEET_ENDPOINT, {
+          method: "POST",
+          body: form,
+          mode: "no-cors"
+        });
+
+        $("sendStatus").textContent = "Trạng thái: Đã gửi! Anh sẽ thấy trong Google Sheet 💌";
+        startConfetti();
+      }catch(err){
+        $("sendStatus").textContent = "Trạng thái: Gửi lỗi (nhưng đã backup trên máy) 🙈";
+      }
+    }
+
+    $("btnSend").addEventListener("click", sendToSheet);
+    $("btnSaveLocal").addEventListener("click", saveLocal);
+
+    // load backup if any
+    try{
+      const raw = localStorage.getItem("birthday_wishes");
+      if(raw){
+        const data = JSON.parse(raw);
+        if(data.wish1) $("wish1").value = data.wish1;
+        if(data.wish2) $("wish2").value = data.wish2;
+      }
+    }catch(e){}
+
+    /***************
+     * NAV BUTTONS
+     ***************/
+    $("btnStart").addEventListener("click", ()=> go("s2"));
+    $("btnBack1").addEventListener("click", ()=> go("s1"));
+
+    $("btnReady").addEventListener("click", async ()=>{
+      go("s3");
+      loadVideo();
+      await tryPlayVideo();
+    });
+
+    $("btnToWishes").addEventListener("click", ()=>{
+      go("s5");
+      startConfetti();
+    });
+  </script>
+</body>
+</html>
